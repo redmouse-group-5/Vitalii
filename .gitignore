@@ -1,4 +1,4 @@
-.env/
-.env
-first/first/local.py
+*.pyc
+.directory
 first/.idea
+.env

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ request.city  }}
+{% for i in articles %}
+    <h2>{{ i.title }}</h2>
+    <p>
+        Author: {{ i.author.username }}<br>
+        Date create: {{ i.date_create }}<br>
+        Date Update: {{ i.date_update }}<br>
+        Comments Count: {{ i.get_comment_count }}
+    </p>
+{% empty %}
+    Not publish article
+{% endfor %}
+</body>
+</html>
