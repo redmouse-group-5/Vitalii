@@ -19,7 +19,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
-    def get_comment_count(self):
+    def get_comment(self):
         from comment.models import Comments
-        comments=Comments.objects.filter(article=self.id, publish=True).count()
+        comments = Comments.objects.filter(article=self.id, publish=True).count()
         return comments

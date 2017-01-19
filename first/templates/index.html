@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Index page{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {% for article in articles %}
+                <div class="post-preview">
+                    <a href="{% url "article:article" article.id %}">
+                        <h2 class="post-title">
+                            {{ article.title }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ article.body|truncatewords:10 }}
+                        </h3>
+                    </a>
+                    <p class="post-meta">
+                        <b>Posted by</b> <a href="#">{{ article.author }}</a> on {{ article.date_create }}
+                        <b>Update</b> {{ article.date_update }}
+                        <b>Comments</b> {{ article.get_comment|length }}
+                    </p>
+                </div>
+                <hr>
+                {% empty %}
+                    <div class="post-preview">
+                        <h2 class="post-title">
+                            Not publish article
+                        </h2>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

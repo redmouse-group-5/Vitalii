@@ -22,7 +22,7 @@ def get_index(request):
 
 def get_article(request, id):
     article = get_object_or_404(Article, id=id, publish=True)
-    return render_to_response('article.html', {'article': article})
+    return render_to_response('article/article.html', {'article': article})
 
 def google(request):
     return redirect('http://google.kg')
