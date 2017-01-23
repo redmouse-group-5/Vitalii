@@ -21,5 +21,5 @@ class Article(models.Model):
 
     def get_comment(self):
         from comment.models import Comments
-        comments = Comments.objects.filter(article=self.id, publish=True).count()
+        comments = Comments.objects.filter(article=self.id, publish=True)
         return comments

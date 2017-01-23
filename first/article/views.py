@@ -4,7 +4,9 @@ from django.shortcuts import render, render_to_response, redirect, get_object_or
 from django.http import HttpResponse, JsonResponse
 import datetime
 
+
 from article.models import Article
+from comment.forms import CommentForm
 
 
 def current_datetime(request, year=datetime.datetime.now().year):
@@ -18,11 +20,12 @@ def current_datetime(request, year=datetime.datetime.now().year):
 def get_index(request):
     articles = Article.objects.filter(publish=True)
     # return render(request, 'index.html', {'nowwwww': now})
-    return render_to_response('index.html', locals())
+    return render(request, 'index.html', locals())
 
 def get_article(request, id):
     article = get_object_or_404(Article, id=id, publish=True)
-    return render_to_response('article/article.html', {'article': article})
+    form = CommentForm()
+    return render(request, 'article/article.html', {'article': article, 'form': form})
 
 def google(request):
     return redirect('http://google.kg')
