@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response, redirect, get_object_or
 from django.http import HttpResponse, JsonResponse
 import datetime
 
+from django.views.generic import RedirectView
 
 from article.models import Article
 from comment.forms import CommentForm
@@ -27,5 +28,9 @@ def get_article(request, id):
     form = CommentForm()
     return render(request, 'article/article.html', {'article': article, 'form': form})
 
-def google(request):
-    return redirect('http://google.kg')
+# def google(request):
+#     return redirect('http://google.kg')
+
+
+class GoogleView(RedirectView):
+    url = 'http://google.kg/'

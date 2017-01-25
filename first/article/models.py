@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+from django.urls import reverse
 
 
 class Article(models.Model):
@@ -23,3 +24,6 @@ class Article(models.Model):
         from comment.models import Comments
         comments = Comments.objects.filter(article=self.id, publish=True)
         return comments
+
+    def get_absolute_url(self):
+        return reverse('article:article', args=[self.id])

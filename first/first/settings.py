@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'article.middleware.middleware.SimpleMiddleware',
+    'article.middleware.middleware.SimpleMiddleware',
 ]
 
 ROOT_URLCONF = 'first.urls'
@@ -130,3 +130,6 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
 STATIC_URL = '/static/'
+
+
+DEFAULT_CITY = "Bishkek"
