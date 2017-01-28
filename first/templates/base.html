@@ -1,4 +1,4 @@
-{%  load static %}
+{%  load static cache i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +63,18 @@
 {#                    <li>#}
 {#                        <a href="contact.html">Contact</a>#}
 {#                    </li>#}
-                </ul>
+                <form action="/i18n/setlang/" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="/" />
+                    <select name="language">
+                        {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}" {% if lang.0 == SELECTEDLANG %}selected{% endif %}>{% if lang.1 == 'Spanish' %}Español{% else %}{{ lang.1 }}{% endif %}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Go" />
+                </form>
+            </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -80,7 +91,7 @@
                     <div class="site-heading">
                         <h1>Clean Blog</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">{% trans 'A Clean Blog Theme by Start Bootstrap' %}</span>
                     </div>
                 </div>
             </div>
@@ -152,6 +163,7 @@
     <hr>
 
     <!-- Footer -->
+{#    {% cache 500 footer %}#}
     <footer>
         <div class="container">
             <div class="row">
@@ -182,12 +194,13 @@
                             </a>
                         </li>
                     </ul>
+
                     <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
                 </div>
             </div>
         </div>
     </footer>
-
+{#{% endcache %}#}
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
 

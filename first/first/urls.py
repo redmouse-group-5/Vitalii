@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^articles/', include('article.urls', namespace="article")),
     url(r'^artic/', include('article.urls', namespace="artic")),
     url(r'^comments_add/(?P<id>\d+)/$', CommentViews.as_view(), name="comment_add"),
-    url(r'^page/(?P<slug>\S+)/$', get_page, name="page")
+    url(r'^page/(?P<slug>\S+)/$', get_page, name="page"),
+    url(r'^i18n/', include('django.conf.urls.i18n'))
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
